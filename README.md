@@ -8,6 +8,24 @@ The goal is a searchable **Suno** application in ChatGPT, with one clear task: c
 
 **0.2.0 implementation update:** [five separate service profiles](profiles/README.md) now build from this single source. Each runtime exposes only one branded task tool/resource/scope; four additional profiles have their own parameters, result cards, bilingual guide and internal review/runtime drafts. None is a deployed or approved listing.
 
+## Published implementation downloads — v0.2.0
+
+The source is merged and **five public, separately installable implementation packages** are available at [v0.2.0](https://github.com/AceDataCloud/SunoChatGPT/releases/tag/v0.2.0). This is a pre-release implementation distribution, **not** a ChatGPT Directory listing or a deployed runtime.
+
+| Single-service package | Download |
+|---|---|
+| Suno | [suno-chatgpt-0.2.0.tar.gz](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/suno-chatgpt-0.2.0.tar.gz) |
+| Seedance | [seedance-chatgpt-0.2.0.tar.gz](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/seedance-chatgpt-0.2.0.tar.gz) |
+| HappyHorse | [happyhorse-chatgpt-0.2.0.tar.gz](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/happyhorse-chatgpt-0.2.0.tar.gz) |
+| GPT Image | [gpt-image-chatgpt-0.2.0.tar.gz](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/gpt-image-chatgpt-0.2.0.tar.gz) |
+| Nano Banana | [nano-banana-chatgpt-0.2.0.tar.gz](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/nano-banana-chatgpt-0.2.0.tar.gz) |
+
+Download [SHA256SUMS](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/SHA256SUMS) and verify the chosen archive (`shasum -a 256 <archive>`; compare its exact filename and digest). Extract it and read `INSTALL.md`. With Node.js 22+, use `npm ci --omit=dev --ignore-scripts`, then `node run-profile.mjs` only after the reviewed operator environment is ready. The launcher fixes a single profile and the archive contains only that profile's built widget. No credentials are included; missing issuer/readback configuration refuses startup.
+
+Every archive was extracted, all per-file hashes checked, its production dependencies installed and the SDK/resource imports verified. The missing-auth startup refusal was also verified. All seven public downloads were read back anonymously with matching SHA-256 values on 2026-10-19. These package checks do not establish real ChatGPT authorization or task execution.
+
+The release tag points to merged commit `fd6c5aed683d0f708767d8649b31f420d9930ae6`; [release-manifest.json](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/release-manifest.json) records each artifact and built-widget checksum. The package remains private for npm publishing: GitHub Release assets are the distribution channel, not an unpublished npm package presented as installed.
+
 ## 1. Official installation — release pending
 
 There is **no published installation link yet**. Do not confuse a public GitHub repository, a local SDK test, or a manual connector URL with an approved App Directory listing. When published, search for **Suno Tasks by Ace Data Cloud**, check the provider is Ace Data Cloud, and use the listing's Connect action.
@@ -60,7 +78,7 @@ Select exactly one independently runnable candidate with `APP_PROFILE=suno`, `se
 
 The widget uses the real `@modelcontextprotocol/ext-apps` bridge, receives tool results, and calls the server with the same ID on refresh. The server uses `registerAppTool`, `registerAppResource`, the MCP App MIME type and exact CSP domains. Building this UI is product implementation; it is not a product screenshot or ChatGPT acceptance proof.
 
-`npm start` fails closed unless all variables in `.env.example` are configured. Never use the example `.invalid` hosts as real endpoints. No real deployment is bundled or authorized. The backend adapter URL is an internal contract to implement, not a currently available Ace API.
+`npm start` fails closed unless all variables in `.env.example` are configured. Never use the example `.invalid` hosts as real endpoints. No production deployment is bundled; deploy only after the release prerequisites and operator authorization are satisfied. The backend adapter URL is an internal contract to implement, not a currently available Ace API.
 
 ## FAQ
 
