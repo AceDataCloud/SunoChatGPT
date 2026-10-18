@@ -1,0 +1,31 @@
+{
+  "as_of": "2026-10-18T12:35:13.896006+08:00",
+  "scope": "local code/SDK/HTTP contract with synthetic signed identities; no browser or paid API",
+  "commands": [
+    "npm ci --ignore-scripts",
+    "npm run build",
+    "npm run check",
+    "npm test",
+    "npm audit --audit-level=high"
+  ],
+  "tests": 20,
+  "status": "PASS",
+  "host": "local loopback HTTP only",
+  "chatgpt_runtime_verified": false,
+  "app_directory_verified": false,
+  "paid_calls": 0,
+  "new_customer_credentials": 0,
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "1.0.1",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "express": "5.1.0",
+    "jose": "6.1.3",
+    "zod": "3.25.76"
+  },
+  "production_dependencies": [
+    "issuer/scope/PKCE/consent/revocation implementation",
+    "owner-scoped internal readback adapter",
+    "media/trademark/commercial policy and organization eligibility",
+    "actual ChatGPT/component and existing task/bill verification"
+  ]
+}
