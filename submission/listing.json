@@ -1,0 +1,41 @@
+{
+  "schema_notice": "INTERNAL DRAFT; not an official submission manifest",
+  "version": "0.1.0",
+  "proposed_title": "Suno Tasks by Ace Data Cloud",
+  "provider": "Ace Data Cloud",
+  "independent_integration": true,
+  "official_suno_app": false,
+  "short_description": "Check the status and titles of your existing Suno music tasks through Ace Data Cloud.",
+  "search_terms": [
+    "suno",
+    "music task status",
+    "Ace Data Cloud"
+  ],
+  "category_candidate": "Music / Productivity; actual platform category choices to verify",
+  "supported_tools": [
+    "suno_get_existing_task"
+  ],
+  "unsupported": [
+    "new music generation",
+    "payments",
+    "task deletion",
+    "ChatGPT base model replacement"
+  ],
+  "auth": {
+    "type": "oauth2",
+    "scopes": [
+      "music.tasks:read"
+    ],
+    "production_issuer_registered": false
+  },
+  "privacy_policy_url": "https://platform.acedata.cloud/documents/privacy",
+  "support_contact": "office@acedata.cloud; operational owner to confirm",
+  "screenshots": "Official reference only; actual ChatGPT execution screenshot pending",
+  "install_url": null,
+  "submission_id": null,
+  "brand_rights_verified": false,
+  "media_policy_verified": false,
+  "submitted": false,
+  "published": false,
+  "icon_candidate": "Use an Ace-owned brand asset after verification; no Suno trademark/logo is bundled or impersonated."
+}

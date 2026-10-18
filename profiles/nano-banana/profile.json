@@ -1,0 +1,16 @@
+{
+  "id": "nano-banana",
+  "brand": "Nano Banana",
+  "title": "Nano Banana Tasks by Ace Data Cloud",
+  "kind": "image",
+  "scope": "nano-banana.tasks:read",
+  "tool": "nano_banana_get_existing_task",
+  "resourceUri": "ui://nano-banana-task-viewer/v1.html",
+  "taskApi": "/nano-banana/tasks",
+  "modelPrefix": "nano-banana",
+  "version": "0.2.0",
+  "attribution": "Independent Ace Data Cloud integration, not an official Nano Banana app.",
+  "searchTerms": ["Nano Banana", "Nano Banana task status", "Ace Data Cloud"],
+  "releaseStatus": "implementation_candidate_not_submitted",
+  "policyApproval": "unknown; exact independent-listing/brand/media rules must be verified before platform submission"
+}

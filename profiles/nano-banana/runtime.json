@@ -1,0 +1,26 @@
+{
+  "schema_notice": "INTERNAL RUNTIME CONFIG CONTRACT, not an official platform manifest",
+  "profile": "nano-banana",
+  "command": "npm start",
+  "environment": {
+    "APP_PROFILE": "nano-banana",
+    "PUBLIC_ORIGIN": "https://nano-banana-app.example.invalid",
+    "OAUTH_AUDIENCE": "https://nano-banana-app.example.invalid/mcp",
+    "OAUTH_ISSUER": "https://issuer.example.invalid/",
+    "OAUTH_JWKS_URL": "https://issuer.example.invalid/.well-known/jwks.json",
+    "OWNED_TASK_READBACK_URL": "https://internal.example.invalid/read-owned-media-task",
+    "OWNED_TASK_READBACK_TOKEN": "<secret-store-only>"
+  },
+  "build_output": "dist/nano-banana/widget.html",
+  "one_tool": "nano_banana_get_existing_task",
+  "one_resource": "ui://nano-banana-task-viewer/v1.html",
+  "scope": "nano-banana.tasks:read",
+  "public_api_semantics": {
+    "method": "POST",
+    "path": "/nano-banana/tasks",
+    "action": "retrieve",
+    "id": "<existing task ID>"
+  },
+  "not_deployed": true,
+  "deployment_authorized": false
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@acedatacloud/suno-chatgpt",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Independently deployable media-task ChatGPT Apps from one Ace-owned SDK source; Suno-first.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node --test",
+    "start": "node src/main.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "1.0.1",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "express": "5.1.0",
+    "jose": "6.1.3",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "prettier": "3.6.2"
+  }
+}

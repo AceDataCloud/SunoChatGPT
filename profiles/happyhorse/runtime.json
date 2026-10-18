@@ -1,0 +1,26 @@
+{
+  "schema_notice": "INTERNAL RUNTIME CONFIG CONTRACT, not an official platform manifest",
+  "profile": "happyhorse",
+  "command": "npm start",
+  "environment": {
+    "APP_PROFILE": "happyhorse",
+    "PUBLIC_ORIGIN": "https://happyhorse-app.example.invalid",
+    "OAUTH_AUDIENCE": "https://happyhorse-app.example.invalid/mcp",
+    "OAUTH_ISSUER": "https://issuer.example.invalid/",
+    "OAUTH_JWKS_URL": "https://issuer.example.invalid/.well-known/jwks.json",
+    "OWNED_TASK_READBACK_URL": "https://internal.example.invalid/read-owned-media-task",
+    "OWNED_TASK_READBACK_TOKEN": "<secret-store-only>"
+  },
+  "build_output": "dist/happyhorse/widget.html",
+  "one_tool": "happyhorse_get_existing_task",
+  "one_resource": "ui://happyhorse-task-viewer/v1.html",
+  "scope": "happyhorse.tasks:read",
+  "public_api_semantics": {
+    "method": "POST",
+    "path": "/happyhorse/tasks",
+    "action": "retrieve",
+    "id": "<existing task ID>"
+  },
+  "not_deployed": true,
+  "deployment_authorized": false
+}

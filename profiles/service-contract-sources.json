@@ -1,0 +1,111 @@
+{
+  "as_of": "2026-10-18T19:15:47.546197+08:00",
+  "sources": [
+    {
+      "path": "seedance/tools/task_tools.py",
+      "ref": "4a2abb23a6f19ea8460c4883dabb5ad378a428b7",
+      "blob": "815071df443fe9c21a69afb9605bfd72fa02850e",
+      "url": "https://github.com/AceDataCloud/MCPs/blob/4a2abb23a6f19ea8460c4883dabb5ad378a428b7/seedance/tools/task_tools.py"
+    },
+    {
+      "path": "seedance/core/utils.py",
+      "ref": "4a2abb23a6f19ea8460c4883dabb5ad378a428b7",
+      "blob": "46255711e99d6ea9a62930d3648bd25839f0d086",
+      "url": "https://github.com/AceDataCloud/MCPs/blob/4a2abb23a6f19ea8460c4883dabb5ad378a428b7/seedance/core/utils.py"
+    },
+    {
+      "path": "happyhorse/tools/task_tools.py",
+      "ref": "4a2abb23a6f19ea8460c4883dabb5ad378a428b7",
+      "blob": "426635500ef327bf10ab0ed45234cb65e7fb6dfe",
+      "url": "https://github.com/AceDataCloud/MCPs/blob/4a2abb23a6f19ea8460c4883dabb5ad378a428b7/happyhorse/tools/task_tools.py"
+    },
+    {
+      "path": "happyhorse/core/utils.py",
+      "ref": "4a2abb23a6f19ea8460c4883dabb5ad378a428b7",
+      "blob": "ecb07119667bbb4466b6c5b184db0b490c193b35",
+      "url": "https://github.com/AceDataCloud/MCPs/blob/4a2abb23a6f19ea8460c4883dabb5ad378a428b7/happyhorse/core/utils.py"
+    },
+    {
+      "path": "openai/core/utils.py",
+      "ref": "4a2abb23a6f19ea8460c4883dabb5ad378a428b7",
+      "blob": "1cdc31b15b01e17be44aa2e37210f5c88ae54bb2",
+      "url": "https://github.com/AceDataCloud/MCPs/blob/4a2abb23a6f19ea8460c4883dabb5ad378a428b7/openai/core/utils.py"
+    },
+    {
+      "path": "nanobanana/tools/task_tools.py",
+      "ref": "4a2abb23a6f19ea8460c4883dabb5ad378a428b7",
+      "blob": "d8e68fccb07b00cabf90c6ca2b39e9626f6b55ff",
+      "url": "https://github.com/AceDataCloud/MCPs/blob/4a2abb23a6f19ea8460c4883dabb5ad378a428b7/nanobanana/tools/task_tools.py"
+    },
+    {
+      "path": "nanobanana/core/utils.py",
+      "ref": "4a2abb23a6f19ea8460c4883dabb5ad378a428b7",
+      "blob": "8d97307d8f046d1b35758b23b5efeb5ff0851e72",
+      "url": "https://github.com/AceDataCloud/MCPs/blob/4a2abb23a6f19ea8460c4883dabb5ad378a428b7/nanobanana/core/utils.py"
+    }
+  ],
+  "policy_status": "Canonical official page HTTP403; exact independent/repetitive App rule unknown; no App submitted",
+  "profiles": [
+    {
+      "profile": "gpt-image",
+      "brand": "GPT Image",
+      "scope": "gpt-image.tasks:read",
+      "task_api": "/openai/tasks",
+      "result_metadata": "width/height",
+      "manifest": "profiles/gpt-image/profile.json",
+      "runtime": "profiles/gpt-image/runtime.json",
+      "listing": "profiles/gpt-image/listing.json",
+      "guide": "profiles/gpt-image/README.md",
+      "zh": "profiles/gpt-image/README_zh_Hans.md"
+    },
+    {
+      "profile": "happyhorse",
+      "brand": "HappyHorse",
+      "scope": "happyhorse.tasks:read",
+      "task_api": "/happyhorse/tasks",
+      "result_metadata": "duration_seconds + width/height",
+      "manifest": "profiles/happyhorse/profile.json",
+      "runtime": "profiles/happyhorse/runtime.json",
+      "listing": "profiles/happyhorse/listing.json",
+      "guide": "profiles/happyhorse/README.md",
+      "zh": "profiles/happyhorse/README_zh_Hans.md"
+    },
+    {
+      "profile": "nano-banana",
+      "brand": "Nano Banana",
+      "scope": "nano-banana.tasks:read",
+      "task_api": "/nano-banana/tasks",
+      "result_metadata": "width/height",
+      "manifest": "profiles/nano-banana/profile.json",
+      "runtime": "profiles/nano-banana/runtime.json",
+      "listing": "profiles/nano-banana/listing.json",
+      "guide": "profiles/nano-banana/README.md",
+      "zh": "profiles/nano-banana/README_zh_Hans.md"
+    },
+    {
+      "profile": "seedance",
+      "brand": "Seedance",
+      "scope": "seedance.tasks:read",
+      "task_api": "/seedance/tasks",
+      "result_metadata": "duration_seconds + width/height",
+      "manifest": "profiles/seedance/profile.json",
+      "runtime": "profiles/seedance/runtime.json",
+      "listing": "profiles/seedance/listing.json",
+      "guide": "profiles/seedance/README.md",
+      "zh": "profiles/seedance/README_zh_Hans.md"
+    },
+    {
+      "profile": "suno",
+      "brand": "Suno",
+      "scope": "music.tasks:read",
+      "task_api": "/suno/tasks",
+      "result_metadata": "title + duration_seconds",
+      "manifest": "profiles/suno/profile.json",
+      "runtime": "profiles/suno/runtime.json",
+      "listing": "profiles/suno/listing.json",
+      "guide": "profiles/suno/README.md",
+      "zh": "profiles/suno/README_zh_Hans.md"
+    }
+  ],
+  "contracts": "Existing media tasks only. Trusted readback must return authoritative service and stored original model. No public production adapter exists yet."
+}
