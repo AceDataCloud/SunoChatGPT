@@ -1,0 +1,16 @@
+{
+  "id": "seedance",
+  "brand": "Seedance",
+  "title": "Seedance Tasks by Ace Data Cloud",
+  "kind": "video",
+  "scope": "seedance.tasks:read",
+  "tool": "seedance_get_existing_task",
+  "resourceUri": "ui://seedance-task-viewer/v1.html",
+  "taskApi": "/seedance/tasks",
+  "modelPrefix": null,
+  "version": "0.2.0",
+  "attribution": "Independent Ace Data Cloud integration, not an official Seedance app.",
+  "searchTerms": ["Seedance", "Seedance task status", "Ace Data Cloud"],
+  "releaseStatus": "implementation_candidate_not_submitted",
+  "policyApproval": "unknown; exact independent-listing/brand/media rules must be verified before platform submission"
+}

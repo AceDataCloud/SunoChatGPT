@@ -4,7 +4,9 @@
 
 Read [简体中文](docs/README_zh_Hans.md) · [Current pricing and access](https://platform.acedata.cloud/models?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=sunochatgpt_readme_pricing) · [Privacy policy](https://platform.acedata.cloud/documents/privacy)
 
-The goal is a searchable **Suno** application in ChatGPT, with one clear task: check an existing music task and see its status/titles without leaving the conversation. This source implements a real MCP Apps component and authenticated Streamable HTTP server; it does not replace ChatGPT's model provider. Generation, editing, payments and account administration are not included in this first release.
+The goal is a searchable **Suno** application in ChatGPT, with one clear task: check an existing music task and see its status/titles without leaving the conversation. This source implements a real MCP Apps component and authenticated Streamable HTTP server; it does not replace ChatGPT's model provider. Generation, editing, payments and account administration are not included in this release.
+
+**0.2.0 implementation update:** [five separate service profiles](profiles/README.md) now build from this single source. Each runtime exposes only one branded task tool/resource/scope; four additional profiles have their own parameters, result cards, bilingual guide and internal review/runtime drafts. None is a deployed or approved listing.
 
 ## 1. Official installation — release pending
 
@@ -54,6 +56,8 @@ npm test
 npm audit --audit-level=high
 ```
 
+Select exactly one independently runnable candidate with `APP_PROFILE=suno`, `seedance`, `happyhorse`, `gpt-image` or `nano-banana`. Each deployment exposes one service only; see [profile-specific bilingual guides and runtime/listing drafts](profiles/README.md). All scopes still require production implementation.
+
 The widget uses the real `@modelcontextprotocol/ext-apps` bridge, receives tool results, and calls the server with the same ID on refresh. The server uses `registerAppTool`, `registerAppResource`, the MCP App MIME type and exact CSP domains. Building this UI is product implementation; it is not a product screenshot or ChatGPT acceptance proof.
 
 `npm start` fails closed unless all variables in `.env.example` are configured. Never use the example `.invalid` hosts as real endpoints. No real deployment is bundled or authorized. The backend adapter URL is an internal contract to implement, not a currently available Ace API.
@@ -65,7 +69,7 @@ The widget uses the real `@modelcontextprotocol/ext-apps` bridge, receives tool 
 - **403?** Missing task-read permission or untrusted Origin. Generation scope and `mcp:access` alone are rejected. Do not expand permissions to work around it.
 - **404?** Unknown/deleted/unowned task. Verify the task belongs to the connected account; do not try other people's task IDs.
 - **429 / server error?** Read the error and retry only the same task when appropriate; this app never generates a fallback task.
-- **Can I install Seedance/HappyHorse/GPT Image/Nano Banana here?** They are independent directory candidates, not hidden capabilities of this Suno entry. Their MCP packages do not prove ChatGPT listings.
+- **Can I install Seedance/HappyHorse/GPT Image/Nano Banana here?** They now have [independent runnable profiles](profiles/README.md) in this one source; choose one per deployment. They are not hidden capabilities of the Suno profile, and neither these candidates nor their MCP packages prove ChatGPT listings.
 
 ## Submission and source ownership
 

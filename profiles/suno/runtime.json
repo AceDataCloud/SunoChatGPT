@@ -1,0 +1,26 @@
+{
+  "schema_notice": "INTERNAL RUNTIME CONFIG CONTRACT, not an official platform manifest",
+  "profile": "suno",
+  "command": "npm start",
+  "environment": {
+    "APP_PROFILE": "suno",
+    "PUBLIC_ORIGIN": "https://suno-app.example.invalid",
+    "OAUTH_AUDIENCE": "https://suno-app.example.invalid/mcp",
+    "OAUTH_ISSUER": "https://issuer.example.invalid/",
+    "OAUTH_JWKS_URL": "https://issuer.example.invalid/.well-known/jwks.json",
+    "OWNED_TASK_READBACK_URL": "https://internal.example.invalid/read-owned-media-task",
+    "OWNED_TASK_READBACK_TOKEN": "<secret-store-only>"
+  },
+  "build_output": "dist/suno/widget.html",
+  "one_tool": "suno_get_existing_task",
+  "one_resource": "ui://suno-task-viewer/v2.html",
+  "scope": "music.tasks:read",
+  "public_api_semantics": {
+    "method": "POST",
+    "path": "/suno/tasks",
+    "action": "retrieve",
+    "id": "<existing task ID>"
+  },
+  "not_deployed": true,
+  "deployment_authorized": false
+}

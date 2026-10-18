@@ -1,0 +1,16 @@
+{
+  "id": "gpt-image",
+  "brand": "GPT Image",
+  "title": "GPT Image Tasks by Ace Data Cloud",
+  "kind": "image",
+  "scope": "gpt-image.tasks:read",
+  "tool": "gpt_image_get_existing_task",
+  "resourceUri": "ui://gpt-image-task-viewer/v1.html",
+  "taskApi": "/openai/tasks",
+  "modelPrefix": "gpt-image-",
+  "version": "0.2.0",
+  "attribution": "Independent Ace Data Cloud integration, not an official GPT Image app.",
+  "searchTerms": ["GPT Image", "GPT Image task status", "Ace Data Cloud"],
+  "releaseStatus": "implementation_candidate_not_submitted",
+  "policyApproval": "unknown; exact independent-listing/brand/media rules must be verified before platform submission"
+}

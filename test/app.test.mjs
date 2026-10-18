@@ -62,6 +62,7 @@ test("reject tampered signature and absent header", async () => {
 });
 const principal = { subject: "alice", tenant: "one", jti: "fixture-token" };
 const complete = {
+  service: "suno",
   owner_subject: "alice",
   tenant_id: "one",
   state: "complete",
@@ -118,6 +119,8 @@ test("readback envelope fixes action, binds trusted identity and token revocatio
     subject: "alice",
     tenant_id: "one",
     token_jti: "fixture-token",
+    service: "suno",
+    task_api: "/suno/tasks",
     action: "retrieve",
   });
   assert.equal(request.redirect, "error");

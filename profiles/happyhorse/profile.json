@@ -1,0 +1,16 @@
+{
+  "id": "happyhorse",
+  "brand": "HappyHorse",
+  "title": "HappyHorse Tasks by Ace Data Cloud",
+  "kind": "video",
+  "scope": "happyhorse.tasks:read",
+  "tool": "happyhorse_get_existing_task",
+  "resourceUri": "ui://happyhorse-task-viewer/v1.html",
+  "taskApi": "/happyhorse/tasks",
+  "modelPrefix": null,
+  "version": "0.2.0",
+  "attribution": "Independent Ace Data Cloud integration, not an official HappyHorse app.",
+  "searchTerms": ["HappyHorse", "HappyHorse task status", "Ace Data Cloud"],
+  "releaseStatus": "implementation_candidate_not_submitted",
+  "policyApproval": "unknown; exact independent-listing/brand/media rules must be verified before platform submission"
+}

@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-18T12:35:13.896006+08:00",
+  "as_of": "2026-10-18T19:15:47.552909+08:00",
   "scope": "local code/SDK/HTTP contract with synthetic signed identities; no browser or paid API",
   "commands": [
     "npm ci --ignore-scripts",
@@ -8,7 +8,7 @@
     "npm test",
     "npm audit --audit-level=high"
   ],
-  "tests": 20,
+  "tests": 45,
   "status": "PASS",
   "host": "local loopback HTTP only",
   "chatgpt_runtime_verified": false,
@@ -27,5 +27,15 @@
     "owner-scoped internal readback adapter",
     "media/trademark/commercial policy and organization eligibility",
     "actual ChatGPT/component and existing task/bill verification"
+  ],
+  "version": "0.2.0",
+  "coverage_added": [
+    "5 independent brand-specific HTTP MCP tools/resources/scopes",
+    "cross-service/model/owner/tenant rejection and strict args",
+    "video/image metadata cards, no preview URL download",
+    "GPT Image finished_at plus original family",
+    "HappyHorse per-item failure and no URL-only success",
+    "actual widget source with mocked SDK/DOM: textContent and same-ID refresh",
+    "runtime/listing drafts consistent with executable profile and no publication claim"
   ]
 }

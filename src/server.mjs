@@ -10,26 +10,44 @@ import {
 } from "@modelcontextprotocol/ext-apps/server";
 import { z } from "zod";
 import { ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
-import { READ_SCOPE, httpsUrl } from "./auth.mjs";
+import { httpsUrl } from "./auth.mjs";
+import { getProfile } from "./profiles.mjs";
 import { getOwnedTask, TaskError } from "./tasks.mjs";
-export const RESOURCE_URI = "ui://suno-task-viewer/v1.html";
+export const RESOURCE_URI = getProfile().resourceUri;
 const identity = new AsyncLocalStorage();
-const securitySchemes = [{ type: "oauth2", scopes: [READ_SCOPE] }];
-export function createMcpServer({ reader, widgetHtml, resourceOrigin }) {
+
+export function createMcpServer({
+  reader,
+  widgetHtml,
+  resourceOrigin,
+  profile = getProfile(),
+}) {
+  const securitySchemes = [{ type: "oauth2", scopes: [profile.scope] }];
   const server = new McpServer({
-    name: "suno-by-ace-data-cloud",
-    version: "0.1.0",
+    name: `${profile.id}-by-ace-data-cloud`,
+    version: profile.version,
   });
   registerAppTool(
     server,
-    "suno_get_existing_task",
+    profile.tool,
     {
-      title: "Suno task status by Ace Data Cloud",
-      description:
-        "Check an existing Suno music task belonging to the connected Ace Data Cloud account. Independent Ace integration, not the official Suno app. Does not generate music or modify tasks.",
+      title: profile.title,
+      description: `Check an existing ${profile.brand} ${profile.kind} task belonging to the connected Ace Data Cloud account. ${profile.attribution} Does not generate media or modify tasks.`,
       inputSchema: z.object({ task_id: z.string().min(1).max(128) }).strict(),
       outputSchema: {
         task_id: z.string(),
+        service: z.string(),
+        brand: z.string(),
+        tool_name: z.string(),
+        assets: z.array(
+          z.object({
+            kind: z.enum(["music", "video", "image"]),
+            title: z.string(),
+            duration_seconds: z.number().optional(),
+            width: z.number().optional(),
+            height: z.number().optional(),
+          }),
+        ),
         state: z.enum([
           "pending",
           "processing",
@@ -51,8 +69,8 @@ export function createMcpServer({ reader, widgetHtml, resourceOrigin }) {
       securitySchemes,
       _meta: {
         securitySchemes,
-        ui: { resourceUri: RESOURCE_URI },
-        "openai/outputTemplate": RESOURCE_URI,
+        ui: { resourceUri: profile.resourceUri },
+        "openai/outputTemplate": profile.resourceUri,
       },
     },
     async ({ task_id }) => {
@@ -61,12 +79,13 @@ export function createMcpServer({ reader, widgetHtml, resourceOrigin }) {
           reader,
           identity.getStore(),
           task_id,
+          profile,
         );
         return {
           content: [
             {
               type: "text",
-              text: `Music task: ${structuredContent.state}. Media playback has not been validated.`,
+              text: `${profile.brand} task: ${structuredContent.state}. Media playback has not been validated.`,
             },
           ],
           structuredContent,
@@ -95,7 +114,7 @@ export function createMcpServer({ reader, widgetHtml, resourceOrigin }) {
             ...(status === 401
               ? {
                   "mcp/www_authenticate": [
-                    `Bearer resource_metadata="${resourceOrigin}/.well-known/oauth-protected-resource/mcp", error="invalid_token", scope="${READ_SCOPE}"`,
+                    `Bearer resource_metadata="${resourceOrigin}/.well-known/oauth-protected-resource/mcp", error="invalid_token", scope="${profile.scope}"`,
                   ],
                 }
               : {}),
@@ -119,13 +138,13 @@ export function createMcpServer({ reader, widgetHtml, resourceOrigin }) {
   );
   registerAppResource(
     server,
-    "Suno task result",
-    RESOURCE_URI,
+    `${profile.brand} task result`,
+    profile.resourceUri,
     { mimeType: RESOURCE_MIME_TYPE },
     async () => ({
       contents: [
         {
-          uri: RESOURCE_URI,
+          uri: profile.resourceUri,
           mimeType: RESOURCE_MIME_TYPE,
           text: widgetHtml,
           _meta: {
@@ -133,8 +152,7 @@ export function createMcpServer({ reader, widgetHtml, resourceOrigin }) {
               csp: { connectDomains: [], resourceDomains: [] },
               domain: resourceOrigin,
             },
-            "openai/widgetDescription":
-              "Shows only the status and titles of the connected account’s existing music task; does not generate music.",
+            "openai/widgetDescription": `Shows only status and safe result metadata of the connected account’s existing ${profile.brand} task; does not generate media.`,
           },
         },
       ],
@@ -148,6 +166,7 @@ export function createHttpApp({
   publicOrigin,
   issuer,
   widgetHtml,
+  profile = getProfile(),
 }) {
   const origin = httpsUrl(publicOrigin, "public origin").origin;
   httpsUrl(issuer, "issuer");
@@ -157,13 +176,17 @@ export function createHttpApp({
   app.disable("x-powered-by");
   app.use(express.json({ limit: "16kb" }));
   app.get("/health", (_req, res) =>
-    res.json({ status: "ok", app: "suno-by-ace-data-cloud", version: "0.1.0" }),
+    res.json({
+      status: "ok",
+      app: `${profile.id}-by-ace-data-cloud`,
+      version: profile.version,
+    }),
   );
   app.get("/.well-known/oauth-protected-resource/mcp", (_req, res) =>
     res.json({
       resource,
       authorization_servers: [issuer],
-      scopes_supported: [READ_SCOPE],
+      scopes_supported: [profile.scope],
       bearer_methods_supported: ["header"],
     }),
   );
@@ -177,19 +200,18 @@ export function createHttpApp({
       const status = error.status === 403 ? 403 : 401;
       res.set(
         "WWW-Authenticate",
-        `Bearer resource_metadata="${metadataUrl}", error="${status === 403 ? "insufficient_scope" : "invalid_token"}", scope="${READ_SCOPE}"`,
+        `Bearer resource_metadata="${metadataUrl}", error="${status === 403 ? "insufficient_scope" : "invalid_token"}", scope="${profile.scope}"`,
       );
-      return res
-        .status(status)
-        .json({
-          error:
-            status === 403 ? "insufficient_scope" : "authentication_required",
-        });
+      return res.status(status).json({
+        error:
+          status === 403 ? "insufficient_scope" : "authentication_required",
+      });
     }
     const server = createMcpServer({
       reader,
       widgetHtml,
       resourceOrigin: origin,
+      profile,
     });
     const transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: undefined,
@@ -210,9 +232,9 @@ export function createHttpApp({
   });
   return app;
 }
-export function readWidget() {
+export function readWidget(profile = getProfile()) {
   return fs.readFileSync(
-    new URL("../dist/widget.html", import.meta.url),
+    new URL(`../dist/${profile.id}/widget.html`, import.meta.url),
     "utf8",
   );
 }

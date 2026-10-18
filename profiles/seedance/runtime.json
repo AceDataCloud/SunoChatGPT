@@ -1,0 +1,26 @@
+{
+  "schema_notice": "INTERNAL RUNTIME CONFIG CONTRACT, not an official platform manifest",
+  "profile": "seedance",
+  "command": "npm start",
+  "environment": {
+    "APP_PROFILE": "seedance",
+    "PUBLIC_ORIGIN": "https://seedance-app.example.invalid",
+    "OAUTH_AUDIENCE": "https://seedance-app.example.invalid/mcp",
+    "OAUTH_ISSUER": "https://issuer.example.invalid/",
+    "OAUTH_JWKS_URL": "https://issuer.example.invalid/.well-known/jwks.json",
+    "OWNED_TASK_READBACK_URL": "https://internal.example.invalid/read-owned-media-task",
+    "OWNED_TASK_READBACK_TOKEN": "<secret-store-only>"
+  },
+  "build_output": "dist/seedance/widget.html",
+  "one_tool": "seedance_get_existing_task",
+  "one_resource": "ui://seedance-task-viewer/v1.html",
+  "scope": "seedance.tasks:read",
+  "public_api_semantics": {
+    "method": "POST",
+    "path": "/seedance/tasks",
+    "action": "retrieve",
+    "id": "<existing task ID>"
+  },
+  "not_deployed": true,
+  "deployment_authorized": false
+}

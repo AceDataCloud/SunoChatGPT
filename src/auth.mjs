@@ -12,7 +12,13 @@ export function httpsUrl(value, label) {
     throw new Error(`${label} must be a clean HTTPS URL`);
   return url;
 }
-export function createVerifier({ issuer, audience, jwksUrl, keyResolver }) {
+export function createVerifier({
+  issuer,
+  audience,
+  jwksUrl,
+  keyResolver,
+  requiredScope = READ_SCOPE,
+}) {
   httpsUrl(issuer, "issuer");
   httpsUrl(audience, "audience");
   const key = keyResolver ?? createRemoteJWKSet(httpsUrl(jwksUrl, "JWKS URL"));
@@ -45,7 +51,7 @@ export function createVerifier({ issuer, audience, jwksUrl, keyResolver }) {
       throw new Error("missing identity");
     const scopes =
       typeof payload.scope === "string" ? payload.scope.split(/\s+/) : [];
-    if (!scopes.includes(READ_SCOPE)) {
+    if (!scopes.includes(requiredScope)) {
       const e = new Error("insufficient scope");
       e.status = 403;
       throw e;

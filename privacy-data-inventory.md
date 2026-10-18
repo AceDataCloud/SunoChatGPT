@@ -14,3 +14,5 @@
 | Disconnect/delete | Stop later reads via revoked token; historical task/chat deletion requires separate platform support procedure, not implied by disconnect |
 
 Before submission, confirm actual public policy version, data-sharing disclosure to ChatGPT, supported deletion path and exact retention periods. Do not claim zero retention or approved rights without operational evidence.
+
+0.2.0: each independent service profile returns only owned status and safe media metadata (title, duration/dimensions as applicable). Stored service/model classification is internal to the trusted adapter and must be authoritative; no arbitrary profile switch or cross-service query is permitted. Prompts, signed result URLs, media bytes and raw upstream responses remain excluded.

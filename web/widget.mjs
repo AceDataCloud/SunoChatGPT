@@ -1,8 +1,6 @@
 import { App } from "@modelcontextprotocol/ext-apps";
-const app = new App(
-  { name: "Suno task viewer by Ace Data Cloud", version: "0.1.0" },
-  {},
-);
+const profile = __APP_PROFILE__;
+const app = new App({ name: profile.title, version: profile.version }, {});
 let taskId;
 let canRefresh = false;
 const status = document.getElementById("status");
@@ -11,7 +9,13 @@ const refresh = document.getElementById("refresh");
 const render = (result) => {
   list.replaceChildren();
   const data = result.structuredContent;
-  if (result.isError || !data || typeof data.task_id !== "string") {
+  if (
+    result.isError ||
+    !data ||
+    typeof data.task_id !== "string" ||
+    data.service !== profile.id ||
+    data.tool_name !== profile.tool
+  ) {
     status.textContent = "Task could not be read / 无法读取任务";
     canRefresh = false;
     refresh.disabled = true;
@@ -19,9 +23,16 @@ const render = (result) => {
   }
   taskId = data.task_id;
   status.textContent = String(data.state ?? "unknown");
-  for (const track of Array.isArray(data.tracks) ? data.tracks : []) {
+  for (const asset of Array.isArray(data.assets) ? data.assets : []) {
     const li = document.createElement("li");
-    li.textContent = String(track.title ?? "Untitled");
+    const details = [];
+    if (Number.isFinite(asset.duration_seconds))
+      details.push(`${asset.duration_seconds}s`);
+    if (Number.isFinite(asset.width) && Number.isFinite(asset.height))
+      details.push(`${asset.width} × ${asset.height}`);
+    li.textContent = [String(asset.title ?? "Untitled"), ...details].join(
+      " · ",
+    );
     list.append(li);
   }
   canRefresh = data.terminal !== true;
@@ -33,7 +44,7 @@ refresh.addEventListener("click", async () => {
   refresh.disabled = true;
   try {
     const result = await app.callServerTool({
-      name: "suno_get_existing_task",
+      name: profile.tool,
       arguments: { task_id: taskId },
     });
     render(result);

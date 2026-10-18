@@ -1,0 +1,16 @@
+{
+  "id": "suno",
+  "brand": "Suno",
+  "title": "Suno Tasks by Ace Data Cloud",
+  "kind": "music",
+  "scope": "music.tasks:read",
+  "tool": "suno_get_existing_task",
+  "resourceUri": "ui://suno-task-viewer/v2.html",
+  "taskApi": "/suno/tasks",
+  "modelPrefix": null,
+  "version": "0.2.0",
+  "attribution": "Independent Ace Data Cloud integration, not an official Suno app.",
+  "searchTerms": ["Suno", "Suno task status", "Ace Data Cloud"],
+  "releaseStatus": "implementation_candidate_not_submitted",
+  "policyApproval": "unknown; exact independent-listing/brand/media rules must be verified before platform submission"
+}

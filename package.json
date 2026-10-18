@@ -1,12 +1,12 @@
 {
   "name": "@acedatacloud/suno-chatgpt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Suno music-task viewer for ChatGPT, independently provided by Ace Data Cloud.",
+  "description": "Independently deployable media-task ChatGPT Apps from one Ace-owned SDK source; Suno-first.",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "node --check src/server.mjs && node --check src/auth.mjs && node --check src/tasks.mjs && node --check web/widget.mjs && node --check src/main.mjs",
+    "check": "node scripts/check.mjs",
     "test": "node --test",
     "start": "node src/main.mjs"
   },

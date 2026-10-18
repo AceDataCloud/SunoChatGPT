@@ -1,6 +1,8 @@
+import { getProfile } from "./profiles.mjs";
 import { createVerifier } from "./auth.mjs";
 import { HttpOwnedTaskReader } from "./tasks.mjs";
 import { createHttpApp, readWidget } from "./server.mjs";
+const profile = getProfile(process.env.APP_PROFILE ?? "suno");
 const required = [
   "PUBLIC_ORIGIN",
   "OAUTH_ISSUER",
@@ -21,15 +23,18 @@ const verify = createVerifier({
   issuer: process.env.OAUTH_ISSUER,
   audience: process.env.OAUTH_AUDIENCE,
   jwksUrl: process.env.OAUTH_JWKS_URL,
+  requiredScope: profile.scope,
 });
 const reader = new HttpOwnedTaskReader({
   url: process.env.OWNED_TASK_READBACK_URL,
   token: process.env.OWNED_TASK_READBACK_TOKEN,
+  profile,
 });
 createHttpApp({
   verify,
   reader,
   publicOrigin: process.env.PUBLIC_ORIGIN,
   issuer: process.env.OAUTH_ISSUER,
-  widgetHtml: readWidget(),
+  widgetHtml: readWidget(profile),
+  profile,
 }).listen(Number(process.env.PORT ?? 8000), "127.0.0.1");

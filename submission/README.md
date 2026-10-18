@@ -11,3 +11,5 @@ This is an internal preparation packet, not an official upload. Candidate naming
 - After approval, record the actual Directory URL, ordinary-user search/install and version; source merge or npm build does not equal listing.
 
 Official technical basis: https://github.com/openai/openai-apps-sdk-examples/tree/18cc38e78a968712c357bacdc3c79fead5bfc6b4/mcp_app_basics_node and authenticated_server_python. UI package component is real source, not a fake screenshot. Do not use screenshots of our standalone widget as proof of ChatGPT execution.
+
+0.2.0 independent profile packets live in profiles/<service>/listing.json with distinct tools/scopes/resources/runtime contracts and bilingual guides. They are not official manifests, App records or uploaded duplicate listings. Full platform similar-App/trademark/media rule clearance is still required. See profiles/README.md for the exact current evidence gap.
