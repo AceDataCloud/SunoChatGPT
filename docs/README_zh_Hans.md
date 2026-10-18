@@ -6,6 +6,16 @@
 
 **0.2.0 实现更新：**[五项独立运行配置](../profiles/README.md)已共用本源引擎补齐；单进程仍只暴露一项服务的工具/权限/组件，其余四项有各自参数、结果卡片和中英说明，不是已发布的五应用合集。
 
+## 已公开的独立实现包：v0.2.0
+
+源码已合并，五项各自的可安装实现包已在[GitHub v0.2.0 Release](https://github.com/AceDataCloud/SunoChatGPT/releases/tag/v0.2.0)公开；这是**实现预览版分发，不是ChatGPT目录上架或公共runtime**。
+
+分别下载：[Suno](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/suno-chatgpt-0.2.0.tar.gz) · [Seedance](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/seedance-chatgpt-0.2.0.tar.gz) · [HappyHorse](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/happyhorse-chatgpt-0.2.0.tar.gz) · [GPT Image](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/gpt-image-chatgpt-0.2.0.tar.gz) · [Nano Banana](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/nano-banana-chatgpt-0.2.0.tar.gz)。
+
+先对照[SHA256SUMS](https://github.com/AceDataCloud/SunoChatGPT/releases/download/v0.2.0/SHA256SUMS)校验所选归档，再解压读INSTALL.md。Node.js22+用`npm ci --omit=dev --ignore-scripts`安装；只有准备好经过审查的运维授权环境后才运行`node run-profile.mjs`。启动器固定一项profile，归档只带它自己的构建组件，不包含凭据，缺issuer/readback时拒绝启动。
+
+2026-10-19已对五包逐文件校验、生产依赖安装、SDK/组件加载和缺配置拒绝启动逐项验证；七份公开下载均已匿名读回校验SHA-256。tag指向`fd6c5aed683d0f708767d8649b31f420d9930ae6`，不代表真实ChatGPT安装/调用。完整工件摘要见Release manifest；不改private npm属性或虚构npm发布。
+
 ## 1. 从官方入口安装
 
 目前**没有已发布的官方安装链接**，不能把 GitHub、MCP 包或本地测试当作目录上架。正式发布后在 ChatGPT 应用目录搜 **Suno Tasks by Ace Data Cloud**，核对提供者再连接。获准的开发测试则由有权限的既有组织添加部署后的 `/mcp` 地址，并在 More 菜单选择应用；本仓不创建账号/应用或接受协议。
