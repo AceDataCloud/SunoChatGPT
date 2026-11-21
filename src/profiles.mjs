@@ -7,7 +7,7 @@ export const PROFILE_IDS = Object.freeze([
   "gpt-image",
   "nano-banana",
 ]);
-export function getProfile(id = "suno") {
+export function getProfile(id = process.env.APP_PROFILE ?? "suno") {
   if (!PROFILE_IDS.includes(id)) throw new Error("Unknown app profile");
   return Object.freeze(
     JSON.parse(

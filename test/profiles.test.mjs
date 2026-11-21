@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { execFileSync } from "node:child_process";
 import vm from "node:vm";
 import { generateKeyPair, exportJWK, createLocalJWKSet, SignJWT } from "jose";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -495,4 +496,17 @@ test("ACE Music partial failure keeps only completed tracks and never exposes th
     taskView("lyrics", fixture(profile, { type: "lyrics" }), profile).tracks,
     [],
   );
+});
+
+test("the default resource URI uses the selected standalone profile", () => {
+  const resource = execFileSync(
+    process.execPath,
+    [
+      "--input-type=module",
+      "-e",
+      'import { RESOURCE_URI } from "./src/server.mjs"; process.stdout.write(RESOURCE_URI)',
+    ],
+    { env: { ...process.env, APP_PROFILE: "acemusic" }, encoding: "utf8" },
+  );
+  assert.equal(resource, getProfile("acemusic").resourceUri);
 });
