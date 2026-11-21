@@ -1,0 +1,20 @@
+{
+  "id": "acemusic",
+  "brand": "ACE Music",
+  "title": "ACE Music Tasks by Ace Data Cloud",
+  "kind": "music",
+  "scope": "acemusic.tasks:read",
+  "tool": "acemusic_get_existing_task",
+  "resourceUri": "ui://acemusic-task-viewer/v2.html",
+  "taskApi": "/acemusic/tasks",
+  "modelPrefix": null,
+  "version": "0.1.0",
+  "attribution": "ACE Music task viewer by Ace Data Cloud.",
+  "searchTerms": [
+    "ACE Music",
+    "ACE Music task status",
+    "Ace Data Cloud"
+  ],
+  "releaseStatus": "implementation_candidate_not_submitted",
+  "policyApproval": "unknown; exact independent-listing/brand/media rules must be verified before platform submission"
+}

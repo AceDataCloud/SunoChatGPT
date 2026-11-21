@@ -1,9 +1,10 @@
 # Independent service App candidates from one source
 
-These are independently runnable single-service configurations, not a public five-tool collection. `APP_PROFILE` selects exactly one; there is no "all" profile. Each has distinct tool, OAuth scope, UI resource, service binding, bilingual guide and internal listing/runtime draft. Reuse this source instead of copying it into five empty repositories. The repository retains the historical SunoChatGPT name; directory naming and future repo split are release decisions, not technical blockers.
+These are independently runnable single-service configurations, not a public five-tool collection. `APP_PROFILE` selects exactly one; there is no "all" profile. Each has distinct tool, OAuth scope, UI resource, service binding, bilingual guide and internal listing/runtime draft. Reuse this source instead of copying it into separate repositories. The repository retains the historical SunoChatGPT name; directory naming and future repo split are release decisions, not technical blockers.
 
 | Profile | Brand | Result component |
 |---|---|---|
+| [acemusic](acemusic/README.md) | ACE Music | original task state, completed track metadata and partial results |
 | [suno](suno/README.md) | Suno | music title/duration |
 | [seedance](seedance/README.md) | Seedance | video duration/dimensions |
 | [happyhorse](happyhorse/README.md) | HappyHorse | video duration/dimensions, per-item failure |

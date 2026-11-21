@@ -50,10 +50,13 @@ async function signed(profile, audience, scope = profile.scope) {
     .setExpirationTime(now + 120)
     .sign(privateKey);
 }
-test("five independent service profiles have unique identities, scopes, resources and tools", () => {
-  assert.equal(PROFILE_IDS.length, 5);
+test("independent service profiles have unique identities, scopes, resources and tools", () => {
+  assert.ok(PROFILE_IDS.includes("acemusic"));
   for (const key of ["id", "scope", "resourceUri", "tool"])
-    assert.equal(new Set(PROFILE_IDS.map((id) => getProfile(id)[key])).size, 5);
+    assert.equal(
+      new Set(PROFILE_IDS.map((id) => getProfile(id)[key])).size,
+      PROFILE_IDS.length,
+    );
   assert.throws(() => getProfile("../suno"));
   assert.throws(() => getProfile("all"));
 });
@@ -446,4 +449,50 @@ test("all profile runtime/listing packets match executable contracts and do not 
         .includes(profile.scope),
     );
   }
+});
+
+test("ACE Music uses the task state while processing or reconciling a submission", () => {
+  const profile = getProfile("acemusic");
+  for (const [raw, state] of [
+    ["created", "pending"],
+    ["submitting", "pending"],
+    ["processing", "processing"],
+    ["storing", "processing"],
+    ["submission_unknown", "submission_unknown"],
+  ]) {
+    const task = fixture(profile, { state: raw, response: { success: false } });
+    const result = taskView("same", task, profile);
+    assert.equal(result.state, state);
+    assert.equal(result.terminal, false);
+    assert.deepEqual(result.assets, []);
+  }
+});
+
+test("ACE Music partial failure keeps only completed tracks and never exposes their URLs", () => {
+  const profile = getProfile("acemusic");
+  const task = fixture(profile, {
+    state: "partial_failed",
+    response: {
+      success: false,
+      data: [
+        {
+          state: "succeeded",
+          title: "Delivered",
+          duration: 89,
+          audio_url: "private",
+        },
+        { state: "failed", title: "Failed" },
+      ],
+    },
+  });
+  const result = taskView("same", task, profile);
+  assert.equal(result.state, "partial_failed");
+  assert.equal(result.terminal, true);
+  assert.deepEqual(result.assets, [
+    { kind: "music", title: "Delivered", duration_seconds: 89 },
+  ]);
+  assert.deepEqual(
+    taskView("lyrics", fixture(profile, { type: "lyrics" }), profile).tracks,
+    [],
+  );
 });

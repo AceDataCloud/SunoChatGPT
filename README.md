@@ -6,6 +6,8 @@ Read [简体中文](docs/README_zh_Hans.md) · [Current pricing and access](http
 
 The goal is a searchable **Suno** application in ChatGPT, with one clear task: check an existing music task and see its status/titles without leaving the conversation. This source implements a real MCP Apps component and authenticated Streamable HTTP server; it does not replace ChatGPT's model provider. Generation, editing, payments and account administration are not included in this release.
 
+The source also includes the [ACE Music task viewer](profiles/acemusic/README.md), with its own read-only scope and task states.
+
 **0.2.0 implementation update:** [five separate service profiles](profiles/README.md) now build from this single source. Each runtime exposes only one branded task tool/resource/scope; four additional profiles have their own parameters, result cards, bilingual guide and internal review/runtime drafts. None is a deployed or approved listing.
 
 ## Published implementation downloads — v0.2.0

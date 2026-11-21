@@ -42,6 +42,12 @@
       "ref": "4a2abb23a6f19ea8460c4883dabb5ad378a428b7",
       "blob": "8d97307d8f046d1b35758b23b5efeb5ff0851e72",
       "url": "https://github.com/AceDataCloud/MCPs/blob/4a2abb23a6f19ea8460c4883dabb5ad378a428b7/nanobanana/core/utils.py"
+    },
+    {
+      "path": "tools/task_tools.py",
+      "ref": "4402c7e88544b941cafe2da79fd3c33559abec20",
+      "blob": "b25f5dcff5a36366d930c9435f6d69a78736b1f0",
+      "url": "https://github.com/AceDataCloud/AceMusicMCP/blob/4402c7e88544b941cafe2da79fd3c33559abec20/tools/task_tools.py"
     }
   ],
   "policy_status": "Canonical official page HTTP403; exact independent/repetitive App rule unknown; no App submitted",
@@ -105,6 +111,18 @@
       "listing": "profiles/suno/listing.json",
       "guide": "profiles/suno/README.md",
       "zh": "profiles/suno/README_zh_Hans.md"
+    },
+    {
+      "profile": "acemusic",
+      "brand": "ACE Music",
+      "scope": "acemusic.tasks:read",
+      "task_api": "/acemusic/tasks",
+      "result_metadata": "title + duration_seconds",
+      "manifest": "profiles/acemusic/profile.json",
+      "runtime": "profiles/acemusic/runtime.json",
+      "listing": "profiles/acemusic/listing.json",
+      "guide": "profiles/acemusic/README.md",
+      "zh": "profiles/acemusic/README_zh_Hans.md"
     }
   ],
   "contracts": "Existing media tasks only. Trusted readback must return authoritative service and stored original model. No public production adapter exists yet."

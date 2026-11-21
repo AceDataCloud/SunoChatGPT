@@ -1,6 +1,7 @@
 import fs from "node:fs";
 export const PROFILE_IDS = Object.freeze([
   "suno",
+  "acemusic",
   "seedance",
   "happyhorse",
   "gpt-image",
