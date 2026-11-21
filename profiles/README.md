@@ -1,6 +1,6 @@
 # Independent service App candidates from one source
 
-These are independently runnable single-service configurations, not a public five-tool collection. `APP_PROFILE` selects exactly one; there is no "all" profile. Each has distinct tool, OAuth scope, UI resource, service binding, bilingual guide and internal listing/runtime draft. Reuse this source instead of copying it into separate repositories. The repository retains the historical SunoChatGPT name; directory naming and future repo split are release decisions, not technical blockers.
+Each configuration runs one service independently. `APP_PROFILE` selects exactly one; there is no "all" profile. Each has distinct tool, OAuth scope, UI resource, service binding, bilingual guide and internal listing/runtime draft. Reuse this source instead of copying it into separate repositories. The repository retains the historical SunoChatGPT name; directory naming and future repo split are release decisions, not technical blockers.
 
 | Profile | Brand | Result component |
 |---|---|---|

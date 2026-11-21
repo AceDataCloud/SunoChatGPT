@@ -3,7 +3,7 @@
   "profile": "acemusic",
   "proposed_title": "ACE Music Tasks by Ace Data Cloud",
   "provider": "Ace Data Cloud",
-  "not_official_brand_app": false,
+  "not_official_brand_app": true,
   "short_description": "Check the state of your existing ACE Music task and view title and duration metadata for completed tracks.",
   "search_terms": [
     "ACE Music",
