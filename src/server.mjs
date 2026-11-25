@@ -53,6 +53,8 @@ export function createMcpServer({
           "processing",
           "complete",
           "failed",
+          "partial_failed",
+          "submission_unknown",
           "unknown",
         ]),
         terminal: z.boolean(),

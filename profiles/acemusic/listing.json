@@ -1,0 +1,40 @@
+{
+  "schema_notice": "INTERNAL DRAFT, not an official manifest or approved submission",
+  "profile": "acemusic",
+  "proposed_title": "ACE Music Tasks by Ace Data Cloud",
+  "provider": "Ace Data Cloud",
+  "not_official_brand_app": true,
+  "short_description": "Check the state of your existing ACE Music task and view title and duration metadata for completed tracks.",
+  "search_terms": [
+    "ACE Music",
+    "ACE Music task status",
+    "Ace Data Cloud"
+  ],
+  "category_candidate": "Music / Productivity; actual platform categories unknown",
+  "tool": "acemusic_get_existing_task",
+  "auth": {
+    "type": "oauth2",
+    "scopes": [
+      "acemusic.tasks:read"
+    ],
+    "registered": false
+  },
+  "capability": "read an owned existing task; same-ID refresh; no new generation, delete, payment or media download/playback",
+  "result_fields": [
+    "state",
+    "terminal",
+    "task_id",
+    "service",
+    "assets.kind",
+    "assets.title",
+    "title + duration_seconds"
+  ],
+  "privacy_policy_url": "https://platform.acedata.cloud/documents/privacy",
+  "install_url": null,
+  "submission_id": null,
+  "submitted": false,
+  "published": false,
+  "brand_rights_verified": false,
+  "multi_app_policy_verified": false,
+  "media_policy_verified": false
+}

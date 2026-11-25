@@ -30,13 +30,22 @@ function number(value, max) {
     ? value
     : undefined;
 }
-export function taskView(taskId, task, profile = getProfile()) {
-  const response =
-    task.response && typeof task.response === "object" ? task.response : {};
-  const raw = String(task.state ?? task.status ?? "").toLowerCase();
-  const items = itemsFrom(response)
-    .filter((x) => x && typeof x === "object")
-    .slice(0, 20);
+const ACE_MUSIC_STATES = new Map([
+  ["created", "pending"],
+  ["submitting", "pending"],
+  ["processing", "processing"],
+  ["storing", "processing"],
+  ["submission_unknown", "submission_unknown"],
+  ["partial_failed", "partial_failed"],
+  ["failed", "failed"],
+]);
+
+function taskState(raw, task, response, items, profile) {
+  if (profile.id === "acemusic") {
+    if (raw === "succeeded")
+      return response.success === false ? "failed" : "complete";
+    return ACE_MUSIC_STATES.get(raw) ?? "unknown";
+  }
   const itemFailed =
     profile.id === "happyhorse" &&
     items.some((x) =>
@@ -66,7 +75,7 @@ export function taskView(taskId, task, profile = getProfile()) {
             COMPLETE.has(String(x.state ?? x.status ?? "").toLowerCase()),
           ));
   }
-  const state = failed
+  return failed
     ? "failed"
     : complete
       ? "complete"
@@ -75,33 +84,47 @@ export function taskView(taskId, task, profile = getProfile()) {
         : PENDING.has(raw)
           ? "pending"
           : "unknown";
-  const assets = complete
-    ? items.map((x, index) => {
-        const asset = {
-          kind: profile.kind,
-          title: String(
-            x.title ?? x.name ?? `${profile.brand} result ${index + 1}`,
-          ).slice(0, 200),
-        };
-        const duration = number(x.duration_seconds ?? x.duration, 86400);
-        const width = number(x.width, 32768);
-        const height = number(x.height, 32768);
-        if (profile.kind !== "image" && duration !== undefined)
-          asset.duration_seconds = duration;
-        if (profile.kind !== "music") {
-          if (width !== undefined) asset.width = width;
-          if (height !== undefined) asset.height = height;
-        }
-        return asset;
-      })
-    : [];
+}
+
+export function taskView(taskId, task, profile = getProfile()) {
+  const response =
+    task.response && typeof task.response === "object" ? task.response : {};
+  const raw = String(task.state ?? task.status ?? "").toLowerCase();
+  const items = itemsFrom(response)
+    .filter((x) => x && typeof x === "object")
+    .slice(0, 20);
+  const state = taskState(raw, task, response, items, profile);
+  let visibleItems = state === "complete" ? items : [];
+  if (state === "partial_failed")
+    visibleItems = items.filter(
+      (item) => (item.state ?? item.status) === "succeeded",
+    );
+  if (profile.id === "acemusic" && task.type === "lyrics") visibleItems = [];
+  const assets = visibleItems.map((x, index) => {
+    const asset = {
+      kind: profile.kind,
+      title: String(
+        x.title ?? x.name ?? `${profile.brand} result ${index + 1}`,
+      ).slice(0, 200),
+    };
+    const duration = number(x.duration_seconds ?? x.duration, 86400);
+    const width = number(x.width, 32768);
+    const height = number(x.height, 32768);
+    if (profile.kind !== "image" && duration !== undefined)
+      asset.duration_seconds = duration;
+    if (profile.kind !== "music") {
+      if (width !== undefined) asset.width = width;
+      if (height !== undefined) asset.height = height;
+    }
+    return asset;
+  });
   return {
     task_id: taskId,
     service: profile.id,
     brand: profile.brand,
     tool_name: profile.tool,
     state,
-    terminal: failed || complete,
+    terminal: ["failed", "partial_failed", "complete"].includes(state),
     assets,
     tracks:
       profile.kind === "music" ? assets.map((x) => ({ title: x.title })) : [],
