@@ -8,7 +8,7 @@
 
 ## Ace登录与Token
 
-在[Applications](https://platform.acedata.cloud/console/applications?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancechatgpt_readme_api_key)注册/登录，缺少General application先初始化。复制现有Key，或Manage Keys→Create命名专用Key，核对服务/Allowed APIs、到期、限额、余额和[当前价格](https://platform.acedata.cloud/models?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancechatgpt_readme_pricing)；不承诺固定试用额度。[真实脱敏Key图片](README.md#2-ace-registration-and-token-controls)来自固定Ace源，原拍摄日期/版本未知，Dify tutorial为旧标签。
+在[Applications](https://platform.acedata.cloud/console/applications?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancechatgpt_readme_api_key)注册/登录，打开通用应用。复制现有Key，或Manage Keys→Create命名专用Key，核对服务/Allowed APIs、到期、限额、余额和[当前价格](https://platform.acedata.cloud/models?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancechatgpt_readme_pricing)；不承诺固定试用额度。[真实脱敏Key图片](README.md#2-ace-registration-and-token-controls)来自固定Ace源，原拍摄日期/版本未知，Dify tutorial为旧标签。
 
 **本项目不虚构ChatGPT粘Key输入框**。Key说明只解释现有账户控制；实际App需要专用 `seedance.tasks:read` OAuth权限。生产issuer、PKCE/consent/撤销与可信任务读回仍待平台实现，通用Key不能替代。
 
