@@ -100,9 +100,20 @@ export function taskView(taskId, task, profile = getProfile()) {
       (item) => (item.state ?? item.status) === "succeeded",
     );
   if (profile.id === "acemusic" && task.type === "lyrics") visibleItems = [];
+  const referenceTask = profile.id === "acemusic" && task.type === "assets";
+  if (referenceTask) {
+    visibleItems = visibleItems.filter(
+      (item) =>
+        ["midi", "image", "video"].includes(item.type) &&
+        ["available", "expired"].includes(item.status),
+    );
+  }
   const assets = visibleItems.map((x, index) => {
     const asset = {
-      kind: profile.kind,
+      kind: referenceTask ? "reference" : profile.kind,
+      ...(referenceTask
+        ? { reference_type: x.type, reference_status: x.status }
+        : {}),
       title: String(
         x.title ?? x.name ?? `${profile.brand} result ${index + 1}`,
       ).slice(0, 200),
@@ -127,7 +138,9 @@ export function taskView(taskId, task, profile = getProfile()) {
     terminal: ["failed", "partial_failed", "complete"].includes(state),
     assets,
     tracks:
-      profile.kind === "music" ? assets.map((x) => ({ title: x.title })) : [],
+      profile.kind === "music" && !referenceTask
+        ? assets.map((x) => ({ title: x.title }))
+        : [],
     media_available: false,
     billing_verified: false,
   };

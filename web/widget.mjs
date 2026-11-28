@@ -26,6 +26,8 @@ const render = (result) => {
   for (const asset of Array.isArray(data.assets) ? data.assets : []) {
     const li = document.createElement("li");
     const details = [];
+    if (asset.kind === "reference")
+      details.push(asset.reference_type, asset.reference_status);
     if (Number.isFinite(asset.duration_seconds))
       details.push(`${asset.duration_seconds}s`);
     if (Number.isFinite(asset.width) && Number.isFinite(asset.height))

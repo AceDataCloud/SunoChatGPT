@@ -510,3 +510,36 @@ test("the default resource URI uses the selected standalone profile", () => {
   );
   assert.equal(resource, getProfile("acemusic").resourceUri);
 });
+
+test("an owned ACE reference task displays safe metadata without creating a song track", () => {
+  const profile = getProfile("acemusic");
+  const task = fixture(profile, {
+    type: "assets",
+    state: "succeeded",
+    response: {
+      success: true,
+      data: {
+        id: "not-exported",
+        name: "Melody",
+        type: "midi",
+        status: "available",
+        url: "https://private.example/ref.mid",
+      },
+    },
+  });
+  const result = taskView("saved-import", task, profile);
+  assert.deepEqual(result.assets, [
+    {
+      kind: "reference",
+      reference_type: "midi",
+      reference_status: "available",
+      title: "Melody",
+    },
+  ]);
+  assert.deepEqual(result.tracks, []);
+  assert.equal(JSON.stringify(result).includes("private.example"), false);
+  assert.deepEqual(
+    taskView("saved-import", { ...task, state: "processing" }, profile).assets,
+    [],
+  );
+});

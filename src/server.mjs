@@ -41,7 +41,9 @@ export function createMcpServer({
         tool_name: z.string(),
         assets: z.array(
           z.object({
-            kind: z.enum(["music", "video", "image"]),
+            kind: z.enum(["music", "video", "image", "reference"]),
+            reference_type: z.enum(["midi", "image", "video"]).optional(),
+            reference_status: z.enum(["available", "expired"]).optional(),
             title: z.string(),
             duration_seconds: z.number().optional(),
             width: z.number().optional(),
