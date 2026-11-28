@@ -14,7 +14,7 @@ There is no published listing URL. Future approved search phrase: **Seedance** /
 
 ## 2. Ace registration and token controls
 
-Open [Applications](https://platform.acedata.cloud/console/applications?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancechatgpt_readme_api_key), register/sign in and initialize **General application** if absent. Copy an existing key or **Manage Keys → Create** to name a dedicated integration token. Review allowed service/APIs, expiry, usage limit, balance and [current prices](https://platform.acedata.cloud/models?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancechatgpt_readme_pricing). No fixed free quota is promised. Never place keys in chat, tool arguments, screenshots or Git.
+Open [Applications](https://platform.acedata.cloud/console/applications?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancechatgpt_readme_api_key), register/sign in and open **General Application**. Copy an existing key or **Manage Keys → Create** to name a dedicated integration token. Review allowed service/APIs, expiry, usage limit, balance and [current prices](https://platform.acedata.cloud/models?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=seedancechatgpt_readme_pricing). No fixed free quota is promised. Never place keys in chat, tool arguments, screenshots or Git.
 
 ![Real redacted Ace Applications key controls](https://raw.githubusercontent.com/AceDataCloud/SunoDify/8d3d03570e73324220f111f7fe343da0792a8071/_assets/tutorial/get-api-key-en.png)
 

@@ -40,7 +40,7 @@ Source: [OpenAI's official Apps SDK example](https://github.com/openai/openai-ap
 
 ## 2. Register/sign in and prepare an Ace API token
 
-1. Open [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=sunochatgpt_readme_api_key); register or sign in. If General application does not exist, select **Initialize General Application**.
+1. Open [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=sunochatgpt_readme_api_key); register or sign in. Open **General Application**.
 2. In **General application**, copy an existing API key, or use **Manage Keys → Create** to name a dedicated integration key. Confirm your own Suno permissions, expiration, allowed APIs and current balance/pricing. Trial availability is what your account shows; no fixed allowance is promised.
 3. Copy only the token value. Never paste it in a prompt, ChatGPT conversation, shared screenshot, source commit or widget. An account-management `platform-...` token is not a generation API key.
 

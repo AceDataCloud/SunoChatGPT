@@ -26,7 +26,7 @@
 
 ## 2. 登录 Ace 并准备自己的 API Token
 
-1. 打开 [Ace → Applications](https://platform.acedata.cloud/console/applications?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=sunochatgpt_readme_api_key)，注册/登录；没有 General application 时先点 **Initialize General Application**。
+1. 打开 [Ace → Applications](https://platform.acedata.cloud/console/applications?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=sunochatgpt_readme_api_key)，注册/登录，打开**通用应用**。
 2. 在 **General application** 复制现有 Key，或 **Manage Keys → Create** 创建有明确名字的专用 Key；核对 Suno 权限、到期、Allowed APIs、余额与[当前价格](https://platform.acedata.cloud/models?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=sunochatgpt_readme_pricing)，不承诺固定免费额度。
 3. 仅复制原 Token，不加 Bearer、不放到提示词、截图、Git 或组件里；`platform-...` 管理凭据不是服务 API Key。
 
